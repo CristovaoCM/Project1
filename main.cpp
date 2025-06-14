@@ -161,6 +161,7 @@ private:
 public:
     Hospital() {
         conectarAoBanco();
+        carregarLeitosDoBanco();
     }
 
     ~Hospital() {
@@ -173,6 +174,43 @@ public:
             cerr << "Erro ao conectar ao MySQL: " << mysql_error(conn) << endl;
             exit(EXIT_FAILURE);
         }
+    }
+	void carregarLeitosDoBanco() {   // coloquei essa função para carregar os leitos do banco em objeto assim que o programa inicia
+        if (mysql_query(conn, "SELECT id, status, cpf_paciente, crm_medico FROM Leito")) {
+            cerr << "Erro ao carregar leitos: " << mysql_error(conn) << endl;
+            return;
+        }
+
+        MYSQL_RES* res = mysql_store_result(conn);
+        if (!res) {
+            cerr << "Erro ao obter resultado dos leitos: " << mysql_error(conn) << endl;
+            return;
+        }
+
+        MYSQL_ROW row;
+        while ((row = mysql_fetch_row(res))) {
+            int id = stoi(row[0]);
+            string status = row[1] ? row[1] : "disponivel";
+            int cpf = row[2] ? stoi(row[2]) : -1;
+            int crm = row[3] ? stoi(row[3]) : -1;
+
+            auto leito = make_shared<Leito>(id);
+
+            if (cpf != -1) {
+                auto paciente = buscarPacientePorCpf(cpf);
+                if (paciente) leito->associarPaciente(paciente);
+            }
+
+            if (crm != -1) {
+                auto medico = buscarMedicoPorCrm(crm);
+                if (medico) leito->associarMedico(medico);
+            }
+
+            leitos.push_back(leito);
+        }
+
+        mysql_free_result(res);
+        cout << "Leitos carregados do banco de dados com sucesso.\n";
     }
 
     void cadastrarLeito(int id) {
@@ -269,17 +307,54 @@ public:
         mysql_free_result(res);
     }
 
-    shared_ptr<Medico> buscarMedicoPorCrm(int crm) { // VOU FAZER A BUSCA CONSULTAR O BANCO DE DADOS (OU DEIXO ASSIM?)
-        for (auto& m : medicos) {
-            if (m->getCrm() == crm) return m;
+    shared_ptr<Medico> buscarMedicoPorCrm(int crm) {
+        string query = "SELECT nome, especialidade FROM Medico WHERE crm = " + to_string(crm);
+        if (mysql_query(conn, query.c_str())) {
+            cerr << "Erro ao buscar medico no banco de dados: " << mysql_error(conn) << endl;
+            return nullptr;
         }
+
+        MYSQL_RES* res = mysql_store_result(conn);
+        if (!res) {
+            cerr << "Erro ao obter resultado: " << mysql_error(conn) << endl;
+            return nullptr;
+        }
+
+        MYSQL_ROW row = mysql_fetch_row(res);
+        if (row) {
+            string nome = row[0];
+            string especialidade = row[1];
+            mysql_free_result(res);
+            return make_shared<Medico>(nome, especialidade, crm);
+        }
+
+        mysql_free_result(res);
         return nullptr;
     }
 
     shared_ptr<Paciente> buscarPacientePorCpf(int cpf) {
-        for (auto& p : pacientes) {
-            if (p->getCpf() == cpf) return p;
+        string query = "SELECT nome, idade, genero FROM Paciente WHERE cpf = " + to_string(cpf);
+        if (mysql_query(conn, query.c_str())) {
+            cerr << "Erro ao buscar paciente no banco de dados: " << mysql_error(conn) << endl;
+            return nullptr;
         }
+
+        MYSQL_RES* res = mysql_store_result(conn);
+        if (!res) {
+            cerr << "Erro ao obter resultado: " << mysql_error(conn) << endl;
+            return nullptr;
+        }
+
+        MYSQL_ROW row = mysql_fetch_row(res);
+        if (row) {
+            string nome = row[0];
+            int idade = stoi(row[1]);
+            char genero = row[2][0];
+            mysql_free_result(res);
+            return make_shared<Paciente>(nome, genero, idade, cpf);
+        }
+
+        mysql_free_result(res);
         return nullptr;
     }
 
