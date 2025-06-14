@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sistema de Gerenciamento Hospitalar</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabHome">
+       <attribute name="title">
+        <string>Início</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="labelWelcome">
+          <property name="font">
+           <font>
+            <pointsize>24</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Bem-vindo ao Sistema Hospitalar</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelInstructions">
+          <property name="text">
+           <string>Selecione uma opção no menu acima para começar.</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCadastrarPaciente">
+       <attribute name="title">
+        <string>Cadastrar Paciente</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QFormLayout" name="formLayoutPaciente">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelNomePaciente">
+            <property name="text">
+             <string>Nome:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="inputNomePaciente"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelCpfPaciente">
+            <property name="text">
+             <string>CPF:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="inputCpfPaciente"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelIdadePaciente">
+            <property name="text">
+             <string>Idade:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="inputIdadePaciente"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelGeneroPaciente">
+            <property name="text">
+             <string>Gênero:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboGeneroPaciente">
+            <item>
+             <property name="text">
+              <string>M</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>F</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnCadastrarPaciente">
+          <property name="text">
+           <string>Cadastrar Paciente</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacerPaciente">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCadastrarMedico">
+       <attribute name="title">
+        <string>Cadastrar Médico</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QFormLayout" name="formLayoutMedico">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelNomeMedico">
+            <property name="text">
+             <string>Nome:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="inputNomeMedico"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelCrmMedico">
+            <property name="text">
+             <string>CRM:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="inputCrmMedico"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelEspecialidadeMedico">
+            <property name="text">
+             <string>Especialidade:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="inputEspecialidadeMedico"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnCadastrarMedico">
+          <property name="text">
+           <string>Cadastrar Médico</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacerMedico">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCadastrarLeito">
+       <attribute name="title">
+        <string>Cadastrar Leito</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QFormLayout" name="formLayoutLeito">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelIdLeito">
+            <property name="text">
+             <string>ID do Leito:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="inputIdLeito"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnCadastrarLeito">
+          <property name="text">
+           <string>Cadastrar Leito</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacerLeito">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabListar">
+       <attribute name="title">
+        <string>Listar Dados</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayoutListar">
+          <item>
+           <widget class="QPushButton" name="btnListarPacientes">
+            <property name="text">
+             <string>Listar Pacientes</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnListarMedicos">
+            <property name="text">
+             <string>Listar Médicos</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnConsultarLeitos">
+            <property name="text">
+             <string>Consultar Leitos</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="outputListar">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabAlocarLiberar">
+       <attribute name="title">
+        <string>Alocar/Liberar Leito</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <layout class="QFormLayout" name="formLayoutAlocar">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelCpfAlocar">
+            <property name="text">
+             <string>CPF do Paciente:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="inputCpfAlocar"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelCrmAlocar">
+            <property name="text">
+             <string>CRM do Médico:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="inputCrmAlocar"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnAlocar">
+          <property name="text">
+           <string>Alocar Paciente/Médico</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacerAlocar">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formLayoutLiberar">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelIdLiberar">
+            <property name="text">
+             <string>ID do Leito a Liberar:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="inputIdLiberar"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnLiberarLeito">
+          <property name="text">
+           <string>Liberar Leito</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacerLiberar">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
